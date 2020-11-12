@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+    {% if request.session.user_id%}
+
+    <h1> you are already signed in</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for=""> Choose the course</label>
+        <select name="course">
+        {% for d in data %}
+        <option value="{{d.course_name}}">{{d.course_name}}</option>
+        {%endfor%}
+    </select>
+        <input value="submit" type="submit"><br>
+    </form>
+
+  
+    {%endif%}
+</body>
+
+</html>

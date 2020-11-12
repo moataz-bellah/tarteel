@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if request.session.isAdmin %}
+<form method="post" action="{% url 'shop:signup_salon' %}">
+    {%csrf_token%}
+    <input type="email" placeholder="Email" name="email"> <br>
+    <input type="password" placeholder="Password" name="password"> <br>
+    <input type="submit" value="Signup">
+</form>
+{%else%}
+<script alert="this page is only for admin"></script>
+{%endif%}
+</body>
+</html>

@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Contact V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'shop/reg/images/icons/favicon.ico'%}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/reg/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href=" {% static 'shop/reg/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/reg/vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/reg/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/reg/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/reg/css/util.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/reg/css/main.css'%}">
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="contact1">
+        <div class="container-contact1">
+            <div class="contact1-pic js-tilt" data-tilt>
+                <img src="{% static 'shop/reg/images/img-01.png'%}" alt="IMG">
+            </div>
+
+            <form class="contact1-form validate-form" method="post" id="form_val">
+                {% csrf_token %}
+                <span class="contact1-form-title">
+					Welcome To Tartile
+                </span>
+                <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz" id="error">
+
+                    {% for message in messages %} {{message}} <br>{% endfor %}
+
+
+                </div>
+                <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input1" type="text" name="fname" placeholder="First Name">
+                    <span class="shadow-input1"></span>
+                </div>
+                <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input1" type="text" name="lname" placeholder="Last Name">
+                    <span class="shadow-input1"></span>
+                </div>
+                <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input1" type="text" name="username" placeholder="Username">
+                    <span class="shadow-input1"></span>
+                </div>
+                <div class="wrap-input1 validate-input" data-validate="Name is required">
+                    <input class="input1" type="email" name="email" placeholder="Email" id="email2">
+                    <span class="shadow-input1"></span>
+                </div>
+                <div class="wrap-input1 validate-input" data-validate="Name is required" id="pass">
+                    <input class="input1" type="password" name="password" placeholder="Password" id="pass2">
+                    <span class="shadow-input1"></span>
+                </div>
+
+                <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input1" type="text" name="phone" placeholder="Phone Number">
+                    <span class="shadow-input1"></span>
+                </div>
+                <div class="wrap-input1 validate-input">
+                    <select name="user_type">
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                    </select>
+
+                    <!-- <span class="shadow-input1"></span> -->
+                </div>
+                <div class="container-contact1-form-btn">
+                    <button class="contact1-form-btn">
+						<span>
+							 Register
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+					</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCsiqPJQiJdcuKgEbWMEFYJc4ve6HiWKsA",
+            authDomain: "tarteel-acbd9.firebaseapp.com",
+            databaseURL: "https://tarteel-acbd9.firebaseio.com",
+            projectId: "tarteel-acbd9",
+            storageBucket: "tarteel-acbd9.appspot.com",
+            messagingSenderId: "1069308251512",
+            appId: "1:1069308251512:web:5186b355f3ddff1bfd0c8d",
+            measurementId: "G-59STGM53NK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+
+
+
+        // var test = document.getElementById("pass");
+        // var test2 = document.getElementById("pass2");
+        // const email = document.getElementById("email2");
+        // const form = document.getElementById('form_val');
+        // const error = document.getElementById("error");
+        //  form.addEventListener('submit', (e) => {
+        //var email = document.getElementById("email2").value;
+        //    var docRef = db.collection("profiles").doc(email.value);
+        //  let messages = [];
+
+        // docRef.get().then(function(doc) {
+        //   if (doc.exists) {
+        //     error.innerText = "this email is already exits";
+
+        // messages.push("this email is already exits");
+        // }
+        //});
+        //if (test2.value.length < 6) {
+        //   messages.push("password must be more than 6");
+        //console.log("aaaa");
+        //}
+        //if (messages.length > 0) {
+        //  e.preventDefault();
+        // error.innerText = messages.join(', ');
+        // }
+        // })
+    </script>
+
+    <script>
+    </script>
+    <!--===============================================================================================-->
+    <script src="{% static 'shop/reg/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'shop/reg/vendor/bootstrap/js/popper.js'%}"></script>
+    <script src="{% static 'shop/reg/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'shop/reg/vendor/select2/select2.min.js'%}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'shop/reg/vendor/tilt/tilt.jquery.min.js'%}"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
+    <!--===============================================================================================-->
+    <script src="{% static 'shop/reg/js/main.js'%}"></script>
+
+</body>
+
+</html>
